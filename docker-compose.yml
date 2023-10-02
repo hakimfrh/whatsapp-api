@@ -9,8 +9,8 @@ services:
       - data:/app/data
     environment:
       - NODE_ENV=production
-annotations:
-  dev.okteto.com/auto-ingress: "true"
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
       # Add additional environment variables if needed
 
 volumes:
