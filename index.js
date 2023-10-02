@@ -136,11 +136,12 @@ async function connectToWhatsApp() {
     });
     sock.ev.on("creds.update", saveCreds);
     sock.ev.on("messages.upsert", async ({ messages, type }) => {
-        console.log(messages);
+        //console.log(messages);
         if (type === "notify") {
             if (!messages[0].key.fromMe) {
                 //tentukan jenis pesan berbentuk text                
-                const pesan = messages[0].message.conversation;
+                //const pesan = messages[0].message.conversation;
+                const pesan = messages[0].message.extendedTextMessage.text;
 
                 //nowa dari pengirim pesan sebagai id
                 const noWa = messages[0].key.remoteJid;
@@ -149,7 +150,7 @@ async function connectToWhatsApp() {
 
                 //kecilkan semua pesan yang masuk lowercase 
                 const pesanMasuk = pesan.toLowerCase();
-
+                console.log(`From ${noWa}: ${pesan}`);
                 if (!messages[0].key.fromMe && pesanMasuk === "ping") {
                     await sock.sendMessage(noWa, { text: "Pong" }, { quoted: messages[0] });
                 } else {
@@ -202,11 +203,11 @@ const updateQR = (data) => {
 
 // send text message to wa user
 app.post("/send-message", async (req, res) => {
-    console.log(req);
+    //console.log(req);
     const pesankirim = req.body.message;
     const number = req.body.number;
     const fileDikirim = req.files;
-
+    console.log(`Send to ${number}: ${pesankirim}`);
     let numberWA;
     try {
         if (!req.files) {
