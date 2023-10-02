@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hakimfrh/whatsapp-api:latest
+    volumes:
+      - data:/app/data
+    environment:
+      - NODE_ENV=production
+      # Add additional environment variables if needed
+
+volumes:
+  data:

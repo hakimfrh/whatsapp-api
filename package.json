@@ -1,5 +1,5 @@
 {
-  "name": "bot_wa",
+  "name": "whatsapp-api",
   "version": "1.0.0",
   "description": "whatsapp bot sederhana",
   "main": "index.js",
