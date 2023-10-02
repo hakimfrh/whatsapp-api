@@ -136,7 +136,7 @@ async function connectToWhatsApp() {
     });
     sock.ev.on("creds.update", saveCreds);
     sock.ev.on("messages.upsert", async ({ messages, type }) => {
-        //console.log(messages);
+        console.log(messages);
         if (type === "notify") {
             if (!messages[0].key.fromMe) {
                 //tentukan jenis pesan berbentuk text                
@@ -202,7 +202,7 @@ const updateQR = (data) => {
 
 // send text message to wa user
 app.post("/send-message", async (req, res) => {
-    //console.log(req);
+    console.log(req);
     const pesankirim = req.body.message;
     const number = req.body.number;
     const fileDikirim = req.files;

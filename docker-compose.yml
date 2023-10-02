@@ -11,7 +11,6 @@ services:
       - NODE_ENV=production
     ports:
       - "8000:8000"  # Map port 3000 inside the container to port 3000 on your host machine
-      - "80:80"  # Map port 3000 inside the container to port 3000 on your host machine
 
 volumes:
   data:
