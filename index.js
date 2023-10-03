@@ -150,7 +150,7 @@ async function connectToWhatsApp() {
 
                 //kecilkan semua pesan yang masuk lowercase 
                 const pesanMasuk = pesan.toLowerCase();
-                console.log(`From ${noWa}: ${pesan}`);
+                console.log(`From s${noWa}: ${pesan}`);
                 if (!messages[0].key.fromMe && pesanMasuk === "ping") {
                     await sock.sendMessage(noWa, { text: "Pong" }, { quoted: messages[0] });
                 } else {
