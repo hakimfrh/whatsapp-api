@@ -148,7 +148,7 @@ async function connectToWhatsApp() {
 
                 await sock.readMessages([messages[0].key]);
 
-                //kecilkan semua pesan yang masuk lowercase 
+                //kecilkan semua pesan yang masuk lowercase  
                 const pesanMasuk = pesan.toLowerCase();
                 console.log(`From s${noWa}: ${pesan}`);
                 if (!messages[0].key.fromMe && pesanMasuk === "ping") {

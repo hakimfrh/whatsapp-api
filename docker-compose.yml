@@ -4,7 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: hakimfrh/whatsapp-api:latest
+    image: your-github-username/whatsapp-api:latest
+    #example | image: hakimfrh/whatsapp-api:latest
     volumes:
       - data:/app/data
     environment:
