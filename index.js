@@ -28,6 +28,12 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const app = require("express")()
+const { spawn } = require('child_process');
+
+// Restart the app every 12 hours (in milliseconds)
+const restartInterval = 12 * 60 * 60 * 1000;
+setInterval(restartApp, restartInterval);
+
 // enable files upload
 app.use(fileUpload({
     createParentPath: true
@@ -43,6 +49,21 @@ const qrcode = require("qrcode");
 
 app.use("/assets", express.static(__dirname + "/client/assets"));
 
+app.get("/logout", (req, res) => {
+    sock.logout();
+    deleteFiles("./baileys_auth_info")
+    res.sendFile("./client/logout.html", {
+        root: __dirname,
+    });
+});
+
+app.get("/restart", (req, res) => {
+    restartApp();
+    res.sendFile("./client/restart.html", {
+        root: __dirname,
+    });
+});
+
 app.get("/scan", (req, res) => {
     res.sendFile("./client/server.html", {
         root: __dirname,
@@ -54,6 +75,31 @@ app.get("/", (req, res) => {
         root: __dirname,
     });
 });
+
+function deleteFiles(directory) {
+    fs.readdir(directory, (err, files) => {
+      if (err) throw err;
+  
+      for (const file of files) {
+        fs.unlink(path.join(directory, file), err => {
+          if (err) throw err;
+          console.log(`Deleted ${file}`);
+        });
+      }
+    });
+  }
+
+  function restartApp() {
+    console.log('Restarting the app...');
+    const node = spawn(process.argv[0], process.argv.slice(1), {
+      detached: true,
+      stdio: 'inherit'
+    });
+  
+    node.unref();
+    process.exit();
+  }
+  
 //fungsi suara capital 
 function capital(textSound) {
     const arr = textSound.split(" ");
