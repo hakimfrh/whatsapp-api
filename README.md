@@ -8,7 +8,7 @@ whatsapp rest api for sending mmesseges via whatsapp
 1. fork or clone this repo.
 2. modify docker-compose.yml, change with your username
 ```bash
-  image: your-github-username/whatsapp-api:latest
+  image: your-github-username/repo-name:latest
   #example   image: hakimfrh/whatsapp-api:latest
 ```
 3. login into okteto with github and deploy
