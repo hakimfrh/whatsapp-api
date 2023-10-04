@@ -183,7 +183,7 @@ async function connectToWhatsApp() {
     });
     sock.ev.on("creds.update", saveCreds);
     sock.ev.on("messages.upsert", async ({ messages, type }) => {
-        console.log(messages[0]);
+        //console.log(messages[0]);
         if (type === "notify") {
             if (!messages[0].key.fromMe) {
                 //tentukan jenis pesan berbentuk text                
