@@ -52,17 +52,17 @@ app.use("/assets", express.static(__dirname + "/client/assets"));
 app.get("/logout", (req, res) => {
     sock.logout();
     deleteFiles("./baileys_auth_info")
-    restartApp();
     res.sendFile("./client/logout.html", {
         root: __dirname,
     });
+    restartApp();
 });
 
 app.get("/restart", (req, res) => {
-    restartApp();
     res.sendFile("./client/restart.html", {
         root: __dirname,
     });
+    restartApp();
 });
 
 app.get("/scan", (req, res) => {
